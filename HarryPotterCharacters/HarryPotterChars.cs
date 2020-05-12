@@ -6,11 +6,8 @@ namespace HarryPotterCharacters
 {
     public class HarryPotterChars
     {
-        [Command(Description = "Lists the films")]
-        public void Films(IConsole console)
-        {
-            console.WriteTable(Movies.GetMovies());
-        }
+        [SubCommand]
+        public Films Films { get; set; }
 
         [Command(Description = "Lists the individual wizards")]
         public void Wizards(IConsole console, string house = "")
