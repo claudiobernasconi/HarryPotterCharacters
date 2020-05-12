@@ -2,12 +2,16 @@
 
 namespace HarryPotterCharacters
 {
-    class Program
+    public class Program
     {
         static int Main(string[] args)
         {
-            AppRunner<HarryPotterChars> appRunner = new AppRunner<HarryPotterChars>();
-            return appRunner.Run(args);
+            return BuildAppRunner().Run(args);
+        }
+
+        public static AppRunner<HarryPotterChars> BuildAppRunner()
+        {
+            return new AppRunner<HarryPotterChars>();
         }
     }
 }
