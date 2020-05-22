@@ -1,28 +1,20 @@
-﻿using CommandDotNet.Attributes;
-using ConsoleTables;
+﻿using CommandDotNet;
 using System.Linq;
+using CommandDotNet.Rendering;
 
 namespace HarryPotterCharacters
 {
     public class HarryPotterChars
     {
-        [ApplicationMetadata(Description = "Lists the films")]
-        public void Films()
-        {
-            ConsoleTable
-                .From(Movies.GetMovies())
-                .Write();
-        }
+        [SubCommand]
+        public Films Films { get; set; }
 
-        [ApplicationMetadata(Description = "Lists the individual wizards")]
-        public void Wizards(string house = "")
+        [Command(Description = "Lists the individual wizards")]
+        public void Wizards(IConsole console, string house = "")
         {
             var characters = Characters.GetCharacters()
                 .Where(wizard => wizard.House.Contains(house));
-
-            ConsoleTable
-               .From(characters)
-               .Write();
+            console.WriteTable(characters);
         }
     }
 }
